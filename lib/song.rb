@@ -1,18 +1,14 @@
 class Song 
-  
-  
-
+  extend Concerns::Findable
   attr_accessor :name, :genre
   attr_reader :artist
   @@all = []
-  
   
   def initialize(name, artist = nil, genre = nil)
     self.artist = artist 
     self.genre = genre if genre 
     @name = name
   end
-  
   
   def self.all 
     @@all 
@@ -42,7 +38,8 @@ class Song
     genre.songs << self unless genre.songs.include?(self)
   end
   
- 
+
+  
   def self.new_from_filename(file)
     raw = file.gsub(".mp3", "")
     row = raw.split(" - ")
